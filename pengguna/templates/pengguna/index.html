@@ -1,0 +1,12 @@
+{% extends 'pengguna/base.html' %}
+
+{% block body %}
+
+{% if request.session.username %}
+<p>Halo bang {{ request.session.username }}</p>
+{% else %}
+<p>Login dulu bang</p>
+<a href="{% url 'pengguna:login' %}">Login</a>
+{% endif %}
+
+{% endblock body %}
