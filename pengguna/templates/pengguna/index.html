@@ -4,9 +4,18 @@
 
 {% if request.session.username %}
 <p>Halo bang {{ request.session.username }}</p>
+<a href="{% url 'pengguna:logout' %}">Logout</a>
 {% else %}
+
+
 <p>Login dulu bang</p>
 <a href="{% url 'pengguna:login' %}">Login</a>
+
+<p>Daftar Dulu Lah</p>
+<a href="{% url 'pengguna:registerSupplier' %}">Register Supplier</a>
+<a href="{% url 'pengguna:registerPetugasFaskes' %}">Register Petugas Faskes</a>
+<a href="{% url 'pengguna:registerPetugasDistribusi' %}">Register Petugas Distribusi</a>
+<a href="{% url 'pengguna:registerAdminSatgas' %}">Register Admin Satgas</a>
 {% endif %}
 
 {% endblock body %}

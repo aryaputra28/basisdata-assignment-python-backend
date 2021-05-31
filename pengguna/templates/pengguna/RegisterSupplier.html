@@ -1,0 +1,25 @@
+{% extends 'pengguna/base.html' %}
+
+{% block body %}
+
+{% if messages %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+{% endif %}
+
+<form method="POST" action="{% url 'pengguna:registerSupplier' %}">
+    {% csrf_token %}
+    
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <input type="text" name="nama" placeholder="Nama Organisasi" required>
+    <input type="text" name="alamat_kel" placeholder="Kelurahan" required>
+    <input type="text" name="alamat_kec" placeholder="Kecamatan" required>
+    <input type="text" name="alamat_kabkot" placeholder="Kabupaten" required>
+    <input type="text" name="alamat_prov" placeholder="Provinsi" required>
+    <input type="text" name="no_telepon" placeholder="Nomor Telepon" required>
+    <button type="submit">Daftar</button>
+</form>
+
+{% endblock body %}
