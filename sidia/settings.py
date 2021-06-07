@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'pengguna',
+    'pengiriman',
 ]
 
 MIDDLEWARE = [
@@ -95,7 +96,7 @@ DATABASES = {
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     #     'OPTIONS': {
-    #         'options': '-c search_path=sidia'
+    #         'options': '-c search_path=public'
     #     },
     #     'NAME': "sidia",
     #     'USER': "postgres",
