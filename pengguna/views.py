@@ -18,14 +18,29 @@ def login(request):
         with connection.cursor() as cursor:
 
             cursor.execute(f"""
-                SELECT * FROM PENGGUNA
-                WHERE username='{request.POST["username"]}'
-                AND password='{request.POST["password"]}'
+                SELECT p.username,
+                CASE
+                    WHEN a.username IS NOT null THEN 'admin'
+                    WHEN f.username IS NOT null THEN 'faskes'
+                    WHEN d.username IS NOT null THEN 'distribusi'
+                    WHEN s.username IS NOT null THEN 'supplier'
+                END AS role
+                FROM pengguna AS p
+                    LEFT JOIN admin_satgas AS a ON a.username=p.username
+                    LEFT JOIN petugas_faskes AS f ON f.username=p.username
+                    LEFT JOIN petugas_distribusi AS d ON d.username=p.username
+                    LEFT JOIN supplier AS s ON s.username=p.username
+                WHERE p.username='{request.POST["username"]}'
+                AND p.password='{request.POST["password"]}'
                 """)
 
             row = cursor.fetchall()
             if (len(row) != 0): # Berhasil login
+
+                # Rolenya ada: 'admin', 'faskes', 'distribusi', 'supplier' CASE SENSITIVE!!!
+
                 request.session["username"] = row[0][0]
+                request.session["role"] = row[0][1]
                 return redirect("pengguna:index")
 
             else: # Gagal login
@@ -35,6 +50,7 @@ def login(request):
 
 def logout(request):
     request.session.pop("username", None)
+    request.session.pop("role", None)
     return redirect("pengguna:index")
 
 def registerSupplier(request):

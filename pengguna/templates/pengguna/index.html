@@ -4,6 +4,7 @@
 
 {% if request.session.username %}
 <p>Halo bang {{ request.session.username }}</p>
+<p>Halo bang {{ request.session.role }}</p>
 <a href="{% url 'pengguna:logout' %}">Logout</a>
 {% else %}
 
