@@ -81,7 +81,6 @@ def registerSupplier(request):
 
                 return redirect("pengguna:login")
             else:
-                print("SOKIN")
                 messages.add_message(request, messages.WARNING, f"{request.POST['username']} sudah terdaftar sebelumnya")
 
     return render(request, "pengguna/RegisterSupplier.html")

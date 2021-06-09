@@ -1,14 +1,206 @@
 <!DOCTYPE html>
 <html>
-
     {% load static %}
-
     <head>
+        <title>SIDIA-E5</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- bootstrap  -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         {% block head %}
         {% endblock head %}
     </head>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="">SIDIA E5</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            {% if request.session.role == 'faskes' %}
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Batch Pengiriman</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Stock Warehouse Satgas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Stock Faskes</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Permohonan Sumber Daya
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Buat Permohonan Sumber Daya</a>
+                <a class="dropdown-item" href="#">List Permohonan Sumber Daya</a>
+                <a class="dropdown-item" href="#">List Riwayat Status Permohonan Sumber Daya</a>
+              </div>
+            </li>
+            {% elif request.session.role == 'admin' %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Permohonan Sumber Daya
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">List Permohonan Sumber Daya</a>
+                  <a class="dropdown-item" href="#">Buat Riwayat Status Permohonan Sumber Daya</a>
+                  <a class="dropdown-item" href="#">List Riwayat Status Permohonan Sumber Daya</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Item Sumber Daya</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Pesanan Sumber Daya
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Buat Pesanan Sumber Daya</a>
+                  <a class="dropdown-item" href="#">List Pesanan Sumber Daya</a>
+                  <a class="dropdown-item" href="#">List Riwayat Status Pesanan Sumber Daya</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Kendaraan
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Buat Kendaraan</a>
+                  <a class="dropdown-item" href="#">List Kendaraan</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Batch Pengiriman
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Buat Batch Pengiriman</a>
+                  <a class="dropdown-item" href="#">List Batch Pengiriman</a>
+                  <a class="dropdown-item" href="#">Buat Riwayat Status Batch Pengiriman</a>
+                  <a class="dropdown-item" href="#">List Riwayat Status Batch Pengiriman</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Lokasi
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Buat Lokasi</a>
+                  <a class="dropdown-item" href="#">List Lokasi</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Fasilitas Kesehatan
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Buat Faskes</a>
+                  <a class="dropdown-item" href="#">List Faskes</a>
+                  <a class="dropdown-item" href="#">Buat Stock Faskes</a>
+                  <a class="dropdown-item" href="#">List Stock Faskes</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Warehouse Satgas
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Buat Warehouse Satgas</a>
+                  <a class="dropdown-item" href="#">List Warehouse Satgas</a>
+                  <a class="dropdown-item" href="#">Buat Stock Warehouse Satgas</a>
+                  <a class="dropdown-item" href="#">List Stock Warehouse Satgas</a>
+                </div>
+            </li>
+            {% elif request.session.role == 'supplier' %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Item Sumber Daya
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Buat Item Sumber Daya</a>
+                  <a class="dropdown-item" href="#">List Item Sumber Daya</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Pesanan Sumber Daya
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">List Pesanan Sumber Daya</a>
+                  <a class="dropdown-item" href="#">Ubah Riwayat Pesanan Sumber Daya</a>
+                  <a class="dropdown-item" href="#">List Riwayat Pesanan Sumber Daya</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Fasilitas Kesehatan</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Warehouse
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">List Warehouse Satgas</a>
+                  <a class="dropdown-item" href="#">List List Stock Warehouse Satgas</a>
+                </div>
+            </li>
+            {% elif request.session.role == 'distribusi' %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Kendaraan
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">List Kendaraan</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Batch Pengiriman
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">List Batch Pengiriman</a>
+                  <a class="dropdown-item" href="#">List Riwayat Status Batch Pengiriman</a>
+                </div>
+            </li>
+            {% endif %}
+
+          </ul>
+          {% if request.session.username %}
+          <ul class="navbar-nav">
+            <!-- Logout -->
+            <li class="nav-item">
+                <a style="color: white;" class="nav-link" href="{% url 'pengguna:logout' %}">Logout</a></li>
+            </li>
+            <!-- Hello, {user} -->
+            <li class="nav-item">
+                <a style="color: white; font-weight: bold;" class="nav-link" href="/">{{ request.session.username }}</a></li>
+            </li>
+          </ul>
+          {% else %}
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Register
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="{% url 'pengguna:registerSupplier' %}">Supplier</a>
+                  <a class="dropdown-item" href="{% url 'pengguna:registerPetugasFaskes' %}">Petugas Faskes</a>
+                  <a class="dropdown-item" href="{% url 'pengguna:registerPetugasDistribusi' %}">Petugas Distribusi</a>
+                  <a class="dropdown-item" href="{% url 'pengguna:registerAdminSatgas' %}">Admin Satgas</a>
+              </div>
+            </li>
+            <li class="nav-item">
+                <a style="color: white" class="nav-link"  href="{% url 'pengguna:login' %}" style="margin-right: 100px;">Login</a></li>
+            </li>
+        </ul>
+          {% endif %}
+        </div>
+      </nav>
     <body>
         {% block body %}
         {% endblock body %}
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
     </body>
 </html>
