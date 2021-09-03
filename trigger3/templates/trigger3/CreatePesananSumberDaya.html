@@ -1,0 +1,80 @@
+{% extends 'pengguna/base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <form method="POST" action="{% url 'trigger3:CreatePesananSumberDaya' %}" style="margin-top: 30px;">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="supplier"><strong>Choose Supplier:</strong></label>
+          <select class="form-control" id="supplier" name="supplier">
+              <option value=""></option>
+          {% for i in result %}
+              <option value={{i}} >{{i}}</option>
+          {% endfor %}
+          </select>
+        </div>
+        <button type="submit" class="btn btn-dark" name="tombol" value="choose">Choose</button>
+    </form>
+    <hr>
+    <form method="POST" action="{% url 'trigger3:CreatePesananSumberDaya' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label><strong>Your Supplier: </strong></label>
+          <input type="text" class="form-control" name="supplier" value={{supp}} readonly>
+        </div>
+        <div class="form-group">
+          <label for="kode"><strong>Kode Item:</strong></label>
+          <select class="form-control" id="kode" name="kode">
+              {% for i in kodeBarang %}
+              <option value={{i}}>{{i}}</option>
+              {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label ><strong>Jumlah Item: </strong></label>
+          <input class="form-control" type="text" name="jumlahBarang" required>
+        </div>
+        <button type="submit" class="btn btn-dark" name="tombol" value="tambah">Tambah</button>
+    </form>
+    <hr>
+    <form action="{% url 'trigger3:CreatePesananSumberDaya' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="kode"><strong>Admin Satgas:</strong></label>
+          <input type="text" class="form-control" name="username" value={{ request.session.username }} readonly>
+        </div>
+        <div class="form-group">
+          <label><strong>Your Supplier: </strong></label>
+          <input type="text"  class="form-control" name="supplier" value={{supp}} readonly>
+        </div>
+
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">No Urut</th>
+                <th scope="col">Item</th>
+                <th scope="col">Harga Satuan</th>
+                <th scope="col">Jumlah Item</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for i in pesanan_query %}
+              <tr>
+                <th scope="row">{{i.0}}</th>
+                <td>{{i.1}}</td>
+                <td>{{i.2}}</td>
+                <td>{{i.3}}</td>
+                <td><button class="btn btn-danger"  type="submit" name="tombol" value={{i.0}}>delete</button></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <button type="submit" class="btn btn-dark" name="tombol" value="simpan">Simpan</button>
+    </form>
+
+</div>
+
+{% endblock body %}
+

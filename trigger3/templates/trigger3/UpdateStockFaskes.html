@@ -1,0 +1,17 @@
+{% extends 'pengguna/base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1>Update Stok Fasilitas Kesehatan</h1>
+    <p><strong>Kode Faskes: </strong>{{kodeFaskes}}</p>
+    <p><strong>Faskes: </strong>{{namaFaskes}}</p>
+    <p><strong>Kode Item: </strong> {{kodeItem}}</p>
+    <p><strong>Item Sumber Daya: </strong> {{namaItem}}</p>
+    <form method="POST" action="{% url 'trigger3:UpdateStockFaskes' kodeFaskes namaFaskes namaItem %}">
+        {% csrf_token %}
+        <label for="">Jumlah: </label>
+        <input type="text" name="jumlahBarang" required>    
+        <button type="submit" name="tombol" value="simpan">SIMPAN</button>
+    </form>
+</div>
+{% endblock body %}

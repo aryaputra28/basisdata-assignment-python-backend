@@ -35,6 +35,7 @@ def login(request):
                 """)
 
             row = cursor.fetchall()
+            print(row)
             if (len(row) != 0): # Berhasil login
 
                 # Rolenya ada: 'admin', 'faskes', 'distribusi', 'supplier' CASE SENSITIVE!!!
@@ -150,6 +151,7 @@ def registerPetugasDistribusi(request):
 
 def registerAdminSatgas(request):
     if request.method == "POST":
+        print("UHUY")
         with connection.cursor() as cursor:
             username = request.POST["username"]
 

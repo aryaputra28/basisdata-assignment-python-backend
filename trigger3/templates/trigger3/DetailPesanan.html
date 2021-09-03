@@ -1,0 +1,36 @@
+{% extends 'pengguna/base.html' %}
+
+{% block body %}
+<div class="container-xl">
+    <h1 style="text-align: center;">DATA PESANAN SUMBER DAYA</h1>
+    
+    <p><strong>Nomor Transaksi:</strong> {{idPesanan}}</p>
+    <p><strong>Petugas:</strong>{{request.session.username}}</p>
+    <p><strong>Tanggal:</strong> {{result.0.0}}</p>
+    <p><strong>Daftar Pesanan Item:</strong> </p>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">No Urut</th>
+            <th scope="col">Nama Item</th>
+            <th scope="col">Supplier</th>
+            <th scope="col">Harga Satuan</th>
+            <th scope="col">Jumlah Item</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in result %}
+            <tr>
+              <th scope="row">{{i.1}}</th>
+              <td>{{i.2}}</td>
+              <td>{{i.3}}</td>
+              <td>{{i.4}}</td>
+              <td>{{i.5}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p><strong>Total Harga:</strong> {{result.0.6}}</p>
+    <a class="btn btn-primary" href="{% url 'trigger3:ReadPesananSumberDaya'%}">Kembali</a><br>
+</div>
+{% endblock body %}

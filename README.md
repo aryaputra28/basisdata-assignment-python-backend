@@ -1,1 +1,7 @@
-TK 4 kelompok E05
+# Group Project
+
+## Group 4
+
+url: https://sidia-e05.herokuapp.com/
+
+Django with PostgreSQL

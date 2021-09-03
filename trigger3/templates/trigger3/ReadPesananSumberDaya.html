@@ -1,0 +1,45 @@
+{% extends 'pengguna/base.html' %}
+
+{% block body %}
+<div class="container-xl">
+    <h1 style="text-align: center;">LIST PESANAN SUMBER DAYA</h1>
+    <form action="{% url 'trigger3:ReadPesananSumberDaya' %}" method="POST">
+        {% csrf_token %}
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">No Transaksi</th>
+                <th scope="col">Petugas Satgas</th>
+                <th scope="col">Tanggal</th>
+                <th scope="col">Total Berat</th>
+                <th scope="col">Total Item</th>
+                <th scope="col">Total Harga</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for i in result %}
+                <tr>
+                  <th scope="row">{{i.0}}</th>
+                  <td>{{ request.session.username }}</td>
+                  <td>{{i.1}}</td>
+                  <td>{{i.2}}</td>
+                  <td>{{i.3}}</td>
+                  <td>{{i.4}}</td>
+                  <td>{{i.5}}</td>
+                  <td style="text-align: center;">
+                    {% if i.5 == 'REQ-SUP' %} 
+                      <button class="btn btn-danger"  type="submit" name="tombol" value={{i.0}}>delete</button><br>
+                      <a style="margin-top: 4px;" class="btn btn-primary" href="{% url 'trigger3:UpdatePesanan' i.0 %}">update</a><br>
+                    {% endif %}
+                      <a style="margin-top: 4px;" class="btn btn-primary" href="{% url 'trigger3:DetailPesanan' i.0 %}">Detail</a><br>
+                      <a style="margin-top: 4px;" class="btn btn-primary" href="{% url 'trigger3:RiwayatStatus' i.0 %}">Riwayat Status</button>
+                  </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+</div>
+{% endblock body %}

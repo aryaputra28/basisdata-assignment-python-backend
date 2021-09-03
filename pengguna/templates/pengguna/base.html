@@ -11,7 +11,7 @@
         {% endblock head %}
     </head>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="">SIDIA E5</a>
+        <a class="navbar-brand" href="/">SIDIA E5</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,7 +25,7 @@
               <a class="nav-link" href="#">Stock Warehouse Satgas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Stock Faskes</a>
+              <a class="nav-link" href="{% url 'trigger3:ListStockFaskesPetugas' %}">Stock Faskes</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,8 +56,8 @@
                   Pesanan Sumber Daya
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Buat Pesanan Sumber Daya</a>
-                  <a class="dropdown-item" href="#">List Pesanan Sumber Daya</a>
+                  <a class="dropdown-item" href="{% url 'trigger3:CreatePesananSumberDaya' %}">Buat Pesanan Sumber Daya</a>
+                  <a class="dropdown-item" href="{% url 'trigger3:ReadPesananSumberDaya' %}">List Pesanan Sumber Daya</a>
                   <a class="dropdown-item" href="#">List Riwayat Status Pesanan Sumber Daya</a>
                 </div>
             </li>
@@ -97,8 +97,8 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="#">Buat Faskes</a>
                   <a class="dropdown-item" href="#">List Faskes</a>
-                  <a class="dropdown-item" href="#">Buat Stock Faskes</a>
-                  <a class="dropdown-item" href="#">List Stock Faskes</a>
+                  <a class="dropdown-item" href="{% url 'trigger3:CreateStockFaskes' %}">Buat Stock Faskes</a>
+                  <a class="dropdown-item" href="{% url 'trigger3:ListStockFaskes' %}">List Stock Faskes</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -127,7 +127,7 @@
                   Pesanan Sumber Daya
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">List Pesanan Sumber Daya</a>
+                  <a class="dropdown-item" href="{% url 'trigger3:SupplierReadPesanan' %}">List Pesanan Sumber Daya</a>
                   <a class="dropdown-item" href="#">Ubah Riwayat Pesanan Sumber Daya</a>
                   <a class="dropdown-item" href="#">List Riwayat Pesanan Sumber Daya</a>
                 </div>

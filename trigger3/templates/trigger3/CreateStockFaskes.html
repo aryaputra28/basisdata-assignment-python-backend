@@ -1,0 +1,52 @@
+{% extends 'pengguna/base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1>FORM TAMBAH STOCK FASKES</h1>
+    <form method="POST" action="{% url 'trigger3:CreateStockFaskes' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label><strong>Kode Faskes: </strong></label>
+            <select class="form-control" id="kode" name="kode">
+                <option value=""></option>
+            {% for i in kodeFaskes %}
+                <option value="{{i.0}}" >{{i.0}}</option>
+            {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-dark" name="tombol" value="choose">Choose</button>
+    </form>
+    <form method="POST" action="{% url 'trigger3:CreateStockFaskes' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label><strong>Your Supplier: </strong></label>
+            <input type="text" class="form-control" name="kodeFaskesPilihan" value={{kodeFaskesPilihan}} readonly>
+        </div>
+        <div class="form-group">
+            <label for="kode"><strong>Kode Item:</strong></label>
+            <select id="kodeItem" class="form-control" name="kodeItem">
+                {% for i in kodeItem %}
+                <option value={{i.0}}>{{i.0}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-dark" name="tombol" value="choose2">Choose</button>
+    </form>
+    <hr>
+    <form method="POST" action="{% url 'trigger3:CreateStockFaskes' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Kode Faskes: </label>
+            <input class = "form-control" type="text" name="kodeFaskesPilihan" value={{kodeFaskesPilihan}} readonly>
+            <label>Kode Item: </label>
+            <input class = "form-control" type="text" name="kodeItem2" value={{kodeItem2}} readonly>
+            <label for="">Item Sumber Daya: </label>
+            <input class = "form-control" type="text" name="namaItem" value={{namaItem.0.0}} readonly>
+            <label for="">Jumlah: </label>
+            <input class = "form-control" type="text" name="jumlahBarang" required>    
+
+        </div>
+        <button type="submit" name="tombol" value="simpan">SIMPAN</button>
+    </form>
+</div>
+{% endblock body %}

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'pengguna',
     'pengiriman',
+    'trigger3',
 ]
 
 MIDDLEWARE = [
@@ -105,6 +106,7 @@ DATABASES = {
     #     'PORT': '',
     # }
 }
+
 
 if PRODUCTION:
     DATABASES['default'] = dj_database_url.config()

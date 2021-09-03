@@ -1,0 +1,74 @@
+{% extends 'pengguna/base.html' %}
+
+{% block body %}
+
+<div class="container-xl">
+    <h2 style="text-align: center;">FORM UBAH PESANAN SUMBER DAYA</h2>
+    {% if messages %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+{% endif %}
+    <p><strong>Nomor Transaksi: </strong> {{id}}</p>
+    <p><strong>Petugas: </strong> {{request.session.username}}</p>
+    <form method="POST" action="{% url 'trigger3:UpdatePesanan' id %}">
+        {% csrf_token %}
+        <label for="supplier">Choose Supplier:</label>
+        <select id="supplier" name="supplier">
+            <option value=""></option>
+        {% for i in allSupplier %}
+            <option value={{i}} >{{i}}</option>
+        {% endfor %}
+        </select>
+        <button type="submit" name="tombol" value="choose">Choose</button>
+    </form>
+    <hr>
+    <form method="POST" action="{% url 'trigger3:UpdatePesanan' id %}">
+        {% csrf_token %}
+        <label>Your Supplier: </label>
+        <input type="text" name="supplier" value={{supp}} readonly>
+        <label for="kode">Kode Item:</label>
+        <select id="kode" name="kode">
+            {% for i in kodeBarang %}
+            <option value={{i}}>{{i}}</option>
+            {% endfor %}
+        </select>
+        <label >Jumlah Item: </label>
+        <input type="text" name="jumlahBarang" required>
+        <button type="submit" name="tombol" value="tambah">Tambah</button>
+    </form>
+    <hr>
+    <form action="{% url 'trigger3:UpdatePesanan' id %}" method="POST">
+        {% csrf_token %}
+        <label for="kode">Admin Satgas:</label>
+        <input type="text" name="username" value={{ request.session.username }} readonly>
+
+        <label>Your Supplier: </label>
+        <input type="text" name="supplier" value={{supp}} readonly>
+
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">No Urut</th>
+                <th scope="col">Item</th>
+                <th scope="col">Harga Satuan</th>
+                <th scope="col">Jumlah Item</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for i in pesanan_query %}
+              <tr>
+                <th scope="row">{{i.0}}</th>
+                <td>{{i.1}}</td>
+                <td>{{i.2}}</td>
+                <td>{{i.3}}</td>
+                <td><button  type="submit" name="tombol" value={{i.0}}>delete</button></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <button type="submit" name="tombol" value="simpan">Simpan</button>
+    </form>
+</div>
+{% endblock body %}

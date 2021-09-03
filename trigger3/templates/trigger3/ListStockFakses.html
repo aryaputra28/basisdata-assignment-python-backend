@@ -1,0 +1,35 @@
+{% extends 'pengguna/base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1>List Stok Fasilitas Kesehatan</h1>
+    <form action="{% url 'trigger3:ListStockFaskes' %}" method="POST">
+        {% csrf_token %}
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Kode Faskes</th>
+                <th scope="col">Nama Faskes</th>
+                <th scope="col">Item Sumber Daya</th>
+                <th scope="col">Jumlah</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for i in result %}
+                <tr>
+                  <th scope="row">{{i.0}}</th>
+                  <td>{{i.1}}</td>
+                  <td>{{i.2}}</td>
+                  <td>{{i.3}}</td>
+                  <td style="text-align: center;">
+                      <button class="btn btn-primary"  type="submit" name="tombol" value="{{i.0}} {{i.2}}">delete</button><br>
+                      <a class="btn btn-primary" href="{% url 'trigger3:UpdateStockFaskes' i.0 i.1 i.2 %}">update</a><br>
+                  </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+</div>
+{% endblock body %}

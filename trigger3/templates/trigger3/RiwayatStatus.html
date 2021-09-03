@@ -1,0 +1,29 @@
+{% extends 'pengguna/base.html' %}
+
+{% block body %}
+<div class="container-xl">
+    <h2 style="text-align: center;">RIWAYAT STATUS PESANAN SUMBER DAYA</h2>
+    <p><strong>Nomor transaksi:</strong> {{id}} </p>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">No Urut</th>
+            <th scope="col">Nama Item</th>
+            <th scope="col">Username Supplier</th>
+            <th scope="col">Tanggal Persetujuan</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in result %}
+            <tr>
+              <th scope="row">{{i.0}}</th>
+              <td>{{i.1}}</td>
+              <td>{{i.2}}</td>
+              <td>{{i.3}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="{% url 'trigger3:ReadPesananSumberDaya'%}">Kembali</a><br>
+</div>
+{% endblock body %}
